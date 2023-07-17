@@ -1,0 +1,19 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.7.0"
+    }
+  }
+
+  backend "s3" {
+    bucket = "ayoterraform-state"
+    key    = "Dev/dev.tfstate" #create a folder in my bucket called Dev and inside that folder create the state file dev.tfsate
+    region = "us-east-1"
+    dynamodb_table = "terraform-lock"
+  }
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
